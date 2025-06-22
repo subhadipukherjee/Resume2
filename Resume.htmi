@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎂 Happy Birthday | Code With Sujal</title>
+  <meta name="description" content="Special Birthday Wishes with Countdown and Slideshow" />
+  <link rel="icon" href="https://www.palingit.com/favicon.ico" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Antique&family=Dancing+Script&display=swap" rel="stylesheet" />
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- TypeIt for animated text -->
+  <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
+
+  <!-- 💖 Embedded CSS -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Shippori Antique', sans-serif;
+      background: linear-gradient(to bottom, #ff217de0, #ffe1e1), url('./r.jpg') no-repeat center center/cover;
+      height: 100vh;
+      overflow-x: hidden;
+      color: white;
+    }
+
+    .birthday-container {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      margin: 5% auto;
+      max-width: 800px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #ff217d;
+    }
+
+    .birthday-text {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+    }
+
+    .birthday-subtext {
+      font-size: 1.2rem;
+      color: #fff0f8;
+      margin-bottom: 20px;
+    }
+
+    .countdown {
+      margin: 30px 0;
+      font-size: 1.5rem;
+    }
+
+    #timer span {
+      font-weight: bold;
+      color: #ffaad4;
+    }
+
+    .slideshow {
+      margin-top: 30px;
+    }
+
+    .slideshow img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #fff;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 🔊 Background Music -->
+  <audio src="y2mate (mp3cut.net).mp3" autoplay loop></audio>
+
+  <!-- 🎉 Main Birthday Card -->
+  <div class="birthday-container">
+    <h1 id="greeting" class="birthday-text"></h1>
+    <p class="birthday-subtext">Wishing you joy, success, and laughter on your special day 🎉</p>
+
+    <!-- ⏳ Countdown Timer -->
+    <div class="countdown">
+      <h2>Countdown to Birthday:</h2>
+      <div id="timer">
+        <span id="days">0</span> Days 
+        <span id="hours">0</span> Hours 
+        <span id="minutes">0</span> Minutes 
+        <span id="seconds">0</span> Seconds
+      </div>
+    </div>
+
+    <!-- 📷 Image Slideshow -->
+    <div class="slideshow">
+      <img id="slide" src="img1.jpg" alt="Birthday Memories">
+    </div>
+  </div>
+
+  <!-- 💻 JavaScript -->
+  <script>
+    // 🎈 Typewriter animation
+    new TypeIt("#greeting", {
+      strings: "🎂 Happy Birthday, Sujal! 🎉",
+      speed: 100,
+      waitUntilVisible: true
+    }).go();
+
+    // 🎉 SweetAlert popup
+    setTimeout(() => {
+      Swal.fire({
+        title: "🎊 Surprise!",
+        text: "Enjoy your day to the fullest 💖",
+        imageUrl: "https://media.giphy.com/media/3ohs4BSacFKI7A717y/giphy.gif",
+        imageWidth: 300,
+        imageHeight: 200,
+        confirmButtonText: "Yay!"
+      });
+    }, 2500);
+
+    // ⏰ Countdown Timer
+    const countdown = () => {
+      const targetDate = new Date("2025-07-10T00:00:00").getTime(); // 🎯 Your birthday date here
+      const now = new Date().getTime();
+      const gap = targetDate - now;
+
+      const second = 1000;
+      const minute = second * 60;
+      const hour = minute * 60;
+      const day = hour * 24;
+
+      document.getElementById("days").textContent = Math.floor(gap / day);
+      document.getElementById("hours").textContent = Math.floor((gap % day) / hour);
+      document.getElementById("minutes").textContent = Math.floor((gap % hour) / minute);
+      document.getElementById("seconds").textContent = Math.floor((gap % minute) / second);
+    };
+    setInterval(countdown, 1000);
+
+    // 🎞 Slideshow Logic
+    const images = ["img1.jpg", "img2.jpg", "img3.jpg", "img4.jpg"]; // 📁 Your image files
+    let current = 0;
+    const slide = document.getElementById("slide");
+
+    setInterval(() => {
+      current = (current + 1) % images.length;
+      slide.src = images[current];
+    }, 3000);
+  </script>
+</body>
+</html>
